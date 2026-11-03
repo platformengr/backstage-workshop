@@ -1,0 +1,25 @@
+# Owned by the platform team. The map teams hang their components on.
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: commerce
+  description: Everything a customer touches to buy something.
+spec:
+  owner: team-checkout
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: shop
+  description: The online shop.
+spec:
+  owner: team-checkout
+  domain: commerce
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: developer-portal
+  description: Acme Portal, the Backstage app you are building.
+spec:
+  owner: platform

@@ -1,0 +1,13 @@
+# Owned by the platform team. The portal is a component like any other.
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: portal
+  description: Acme Portal, our Backstage app.
+  annotations:
+    github.com/project-slug: YOUR_GITHUB_USER/portal
+spec:
+  type: website
+  lifecycle: production
+  owner: platform
+  system: developer-portal

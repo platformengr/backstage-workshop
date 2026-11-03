@@ -1,0 +1,43 @@
+openapi: 3.0.3
+info:
+  title: Checkout API
+  version: 1.0.0
+paths:
+  /orders:
+    post:
+      summary: Place an order from a basket
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [basketId]
+              properties:
+                basketId: { type: string }
+      responses:
+        '201':
+          description: Order created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Order' }
+  /orders/{id}:
+    get:
+      summary: Read one order
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: The order
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Order' }
+        '404': { description: No such order }
+components:
+  schemas:
+    Order:
+      type: object
+      properties:
+        id: { type: string }
+        status: { type: string, enum: [placed, paid, shipped] }
+        total: { type: number }

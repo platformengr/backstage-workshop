@@ -1,0 +1,96 @@
+# Owned by the platform team. The golden path for a new Node.js service.
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: node-service
+  title: Node.js service
+  description: A new Node.js service with docs, an owner and a place in the catalog.
+  tags: [nodejs, recommended]
+spec:
+  owner: group:default/platform
+  type: service
+
+  # One page of the form per item. Each property becomes parameters.<name>.
+  parameters:
+    - title: About the service
+      required: [name, owner, system]
+      properties:
+        name:
+          title: Name
+          type: string
+          description: Lowercase, dashes allowed. Also the repository name.
+          ui:field: EntityNamePicker
+          ui:autofocus: true
+        description:
+          title: Description
+          type: string
+        owner:
+          title: Owner
+          type: string
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              kind: Group
+              spec.type: team
+        system:
+          title: System
+          type: string
+          ui:field: EntityPicker
+          ui:options:
+            catalogFilter:
+              kind: System
+    - title: Where the code goes
+      required: [repoUrl]
+      properties:
+        repoUrl:
+          title: Repository
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts: [github.com]
+            allowedOwners: [YOUR_GITHUB_USER]
+
+  # Steps run in order on the backend. Each one can read earlier outputs.
+  steps:
+    - id: lookup
+      name: Check the owner
+      action: acme:team:lookup
+      input:
+        owner: ${{ parameters.owner }}
+
+    - id: fetch
+      name: Render the skeleton
+      action: fetch:template
+      input:
+        url: ./skeleton
+        values:
+          name: ${{ parameters.name }}
+          description: ${{ parameters.description }}
+          owner: ${{ parameters.owner }}
+          ownerTitle: ${{ steps['lookup'].output.title }}
+          system: ${{ parameters.system }}
+          repoUrl: ${{ parameters.repoUrl }}
+
+    - id: publish
+      name: Create the repository
+      action: publish:github
+      input:
+        repoUrl: ${{ parameters.repoUrl }}
+        description: ${{ parameters.description }}
+        defaultBranch: main
+        repoVisibility: public
+
+    - id: register
+      name: Add it to the catalog
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
+        catalogInfoPath: /catalog-info.yaml
+
+  output:
+    links:
+      - title: Repository
+        url: ${{ steps['publish'].output.remoteUrl }}
+      - title: Open in catalog
+        icon: catalog
+        entityRef: ${{ steps['register'].output.entityRef }}

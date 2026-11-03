@@ -1,0 +1,43 @@
+# Owned by team-checkout. Lives next to the code it describes.
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: checkout
+  description: Takes a basket and turns it into an order.
+  annotations:
+    github.com/project-slug: YOUR_GITHUB_USER/checkout
+    backstage.io/techdocs-ref: dir:.
+  tags: [nodejs]
+  links:
+    - url: https://github.com/YOUR_GITHUB_USER/checkout
+      title: Source
+spec:
+  type: service
+  lifecycle: production
+  owner: team-checkout
+  system: shop
+  providesApis: [checkout-api]
+  dependsOn: [resource:checkout-db]
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: checkout-api
+  description: Place and read orders.
+spec:
+  type: openapi
+  lifecycle: production
+  owner: team-checkout
+  system: shop
+  definition:
+    $text: ./openapi.yaml
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: checkout-db
+  description: Orders database.
+spec:
+  type: database
+  owner: team-checkout
+  system: shop
