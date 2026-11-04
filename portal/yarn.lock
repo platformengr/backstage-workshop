@@ -2761,7 +2761,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@backstage/plugin-catalog-backend@npm:^4.0.1":
+"@backstage/plugin-catalog-backend@npm:^4.0.1, @backstage/plugin-catalog-backend@npm:^4.0.2":
   version: 4.0.2
   resolution: "@backstage/plugin-catalog-backend@npm:4.0.2"
   dependencies:
@@ -3956,7 +3956,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@backstage/plugin-techdocs-backend@npm:^2.4.0":
+"@backstage/plugin-techdocs-backend@npm:^2.4.1":
   version: 2.4.1
   resolution: "@backstage/plugin-techdocs-backend@npm:2.4.1"
   dependencies:
@@ -13431,7 +13431,7 @@ __metadata:
     "@backstage/plugin-auth-backend-module-github-provider": "npm:^0.5.8"
     "@backstage/plugin-auth-backend-module-guest-provider": "npm:^0.2.24"
     "@backstage/plugin-auth-node": "npm:^0.7.7"
-    "@backstage/plugin-catalog-backend": "npm:^4.0.1"
+    "@backstage/plugin-catalog-backend": "npm:^4.0.2"
     "@backstage/plugin-catalog-backend-module-github": "npm:^0.14.1"
     "@backstage/plugin-catalog-backend-module-logs": "npm:^0.1.27"
     "@backstage/plugin-catalog-backend-module-scaffolder-entity-model": "npm:^0.2.25"
@@ -13452,7 +13452,7 @@ __metadata:
     "@backstage/plugin-search-backend-module-techdocs": "npm:^0.4.19"
     "@backstage/plugin-search-backend-node": "npm:^1.4.9"
     "@backstage/plugin-signals-backend": "npm:^0.3.20"
-    "@backstage/plugin-techdocs-backend": "npm:^2.4.0"
+    "@backstage/plugin-techdocs-backend": "npm:^2.4.1"
     "@backstage/plugin-user-settings-backend": "npm:^0.4.8"
     "@internal/backstage-plugin-scaffolder-backend-module-acme": "workspace:^"
     app: "link:../app"
