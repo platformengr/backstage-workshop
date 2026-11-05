@@ -43,9 +43,9 @@ backend.add(import('@backstage/plugin-catalog-backend-module-github'));
 
 // permission plugin
 backend.add(import('@backstage/plugin-permission-backend'));
-// See https://backstage.io/docs/permissions/getting-started for how to create your own permission policy
+// Our own policy (plugin course, module 08) replaces allow-all.
 backend.add(
-  import('@backstage/plugin-permission-backend-module-allow-all-policy'),
+  import('@internal/backstage-plugin-permission-backend-module-acme'),
 );
 
 // search plugin
@@ -72,5 +72,14 @@ backend.add(import('@backstage/plugin-signals-backend'));
 // mcp actions plugin
 backend.add(import('@backstage/plugin-mcp-actions-backend'));
 
-backend.add(import('@internal/backstage-plugin-scaffolder-backend-module-acme'));
+backend.add(
+  import('@internal/backstage-plugin-scaffolder-backend-module-acme'),
+);
+// Production-readiness scorecards (plugin course) and the modules that add checks
+backend.add(import('@internal/backstage-plugin-readiness-backend'));
+backend.add(import('@internal/backstage-plugin-readiness-backend-module-api'));
+backend.add(
+  import('@internal/backstage-plugin-readiness-backend-module-ownership'),
+);
+
 backend.start();

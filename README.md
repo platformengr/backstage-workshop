@@ -30,6 +30,23 @@ Learners build their own copy and copy files from here when a module says so.
 ## Tags
 
 - `course-1-done`: the portal at the end of the first course. The plugin course starts here.
+- `course-2-done`: the portal with the readiness plugins from the plugin course.
+
+## Plugin course: readiness scorecard
+
+A production-readiness scorecard for catalog components. All packages live in `portal/plugins/`.
+
+| Package | Kind | What it does |
+| --- | --- | --- |
+| `readiness-common` | common | Shared types and the two permissions. |
+| `readiness-node` | node library | The `readiness.checks` extension point. |
+| `readiness-backend` | backend plugin | REST API, Postgres storage, scheduled evaluation. |
+| `readiness-backend-module-api` | backend module | team-checkout's `provides-api` check. |
+| `readiness-backend-module-ownership` | backend module | The capstone: `owner-is-team`, using the catalog. |
+| `permission-backend-module-acme` | backend module | Our permission policy: only `group:default/platform` may evaluate. |
+| `readiness` | frontend plugin | API client, `/readiness` page, entity card and tab. |
+
+Try it: `yarn tsc`, `yarn test --watchAll=false`, then `curl -H "Authorization: Bearer $PORTAL_API_TOKEN" localhost:7007/api/readiness/checks`.
 
 ## What is simplified
 

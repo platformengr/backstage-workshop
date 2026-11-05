@@ -6,6 +6,10 @@ app:
   packages: all
 
   extensions:
+    # The readiness card on component pages (plugin course, module 05).
+    - entity-card:readiness/scorecard:
+        config:
+          passScore: 80
     # Default landing page configuration.
     # The catalog is mounted at /catalog by default but is overridden here to
     # serve as the root page. To switch to the Home page, comment out the
@@ -247,6 +251,14 @@ catalog:
 
 kubernetes:
   # see https://backstage.io/docs/features/kubernetes/configuration for kubernetes configuration options
+
+# Production-readiness scorecards (plugin course, module 02). Owned by the platform team.
+readiness:
+  schedule:
+    frequency: { minutes: 30 }
+    timeout: { minutes: 5 }
+    initialDelay: { seconds: 15 }
+  disabledChecks: []
 
 # see https://backstage.io/docs/permissions/getting-started for more on the permission framework
 permission:
