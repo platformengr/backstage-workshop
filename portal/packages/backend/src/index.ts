@@ -72,9 +72,7 @@ backend.add(import('@backstage/plugin-signals-backend'));
 // mcp actions plugin
 backend.add(import('@backstage/plugin-mcp-actions-backend'));
 
-backend.add(
-  import('@internal/backstage-plugin-scaffolder-backend-module-acme'),
-);
+backend.add(import('@internal/backstage-plugin-scaffolder-backend-module-acme'));
 // Production-readiness scorecards (plugin course) and the modules that add checks
 backend.add(import('@internal/backstage-plugin-readiness-backend'));
 backend.add(import('@internal/backstage-plugin-readiness-backend-module-api'));
