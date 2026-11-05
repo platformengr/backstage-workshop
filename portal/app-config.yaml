@@ -6,7 +6,7 @@ app:
   packages: all
 
   extensions:
-    # The readiness card on component pages (plugin course, module 05).
+    # The readiness card on component pages (plugin course, module 07).
     - entity-card:readiness/scorecard:
         config:
           passScore: 80
